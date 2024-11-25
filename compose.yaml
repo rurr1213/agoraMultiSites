@@ -1,0 +1,38 @@
+#docker compose for agora multisites
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - agora-network
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_ALLOW_MULTISITE: 1
+    volumes:
+      - wordpress_data:/var/www/html
+    ports:
+      - "80:80"
+    networks:
+      - agora-network
+
+volumes:
+  db_data:
+  wordpress_data:
+networks:
+  agora-network:
+
+
