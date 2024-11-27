@@ -27,6 +27,7 @@ services:
     volumes:
       - /home/ubuntu/dev/agoraMultiSites/entrypoint.sh:/usr/local/bin/entrypoint.sh
       - /home/ubuntu/dev/agoraMultiSites/wordpress_files:/var/www/html
+      - /home/ubuntu/dev/agoraMultiSites/apache2_sites_available:/etc/apache2/sites-available
     ports:
       - "80:80"
     networks:
