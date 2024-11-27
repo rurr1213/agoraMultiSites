@@ -23,7 +23,9 @@ services:
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_ALLOW_MULTISITE: 1
+    entrypoint: /usr/local/bin/entrypoint.sh
     volumes:
+      - /home/ubuntu/dev/agoraMultiSites/entrypoint.sh:/usr/local/bin/entrypoint.sh
       - /home/ubuntu/dev/agoraMultiSites/wordpress_files:/var/www/html
     ports:
       - "80:80"
