@@ -1,9 +1,9 @@
 To start the docker containers type
 
-docker compose up
+docker compose up -d
 	this will use the docker.yaml file to start both db (maria db) and wordpress. wordpress is configured already to use
 	multisite by adding specific fields into vi /var/www/html/wp-config.php
-	
+
 docker compose down
 	this will shutdown to setup
 

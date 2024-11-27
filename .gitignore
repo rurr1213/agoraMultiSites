@@ -1,0 +1,12 @@
+# .gitignore
+*.pyc
+__pycache__/
+.env
+
+# .dockerignore
+.git
+node_modules/
+*.log
+
+wordpress_files
+mysql_data
