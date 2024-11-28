@@ -28,8 +28,10 @@ services:
       - /home/ubuntu/dev/agoraMultiSites/entrypoint.sh:/usr/local/bin/entrypoint.sh
       - /home/ubuntu/dev/agoraMultiSites/wordpress_files:/var/www/html
       - /home/ubuntu/dev/agoraMultiSites/apache2_sites_available:/etc/apache2/sites-available
+      - /home/ubuntu/dev/agoraMultiSites/letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - agora-network
 
