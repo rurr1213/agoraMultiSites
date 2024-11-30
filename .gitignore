@@ -9,5 +9,5 @@ node_modules/
 *.log
 
 db_data
-db_backup
+db_backup_working
 wordpress_files
