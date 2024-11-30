@@ -8,7 +8,8 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: password
     volumes:
-      - /home/ubuntu/dev/agoraMultiSites/mysql_data:/var/lib/mysql
+      - /home/ubuntu/dev/agoraMultiSites/db_data:/var/lib/mysql
+      - /home/ubuntu/dev/agoraMultiSites/db_backup:/backup
     networks:
       - agora-network
 
@@ -25,10 +26,11 @@ services:
       WORDPRESS_ALLOW_MULTISITE: 1
     entrypoint: /usr/local/bin/entrypoint.sh
     volumes:
-      - /home/ubuntu/dev/agoraMultiSites/entrypoint.sh:/usr/local/bin/entrypoint.sh
+      - /home/ubuntu/dev/agoraMultiSites/wordpress_entrypoint.sh:/usr/local/bin/entrypoint.sh
       - /home/ubuntu/dev/agoraMultiSites/wordpress_files:/var/www/html
       - /home/ubuntu/dev/agoraMultiSites/apache2_sites_available:/etc/apache2/sites-available
       - /home/ubuntu/dev/agoraMultiSites/letsencrypt:/etc/letsencrypt
+      - /home/ubuntu/dev/agoraMultiSites/wordpress_backup:/backup
     ports:
       - "80:80"
       - "443:443"

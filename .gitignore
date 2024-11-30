@@ -8,5 +8,6 @@ __pycache__/
 node_modules/
 *.log
 
-mysql_data
+db_data
+db_backup
 wordpress_files
