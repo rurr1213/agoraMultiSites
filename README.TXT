@@ -2,12 +2,22 @@ AGORA MULTISITE README
 ======================
 See following contents for refence.
 
-NEW SITE STEPS
-==============
+TO USE THIS REPO
+================
+Created a agoraMultiSites directory
+Install docker and docker compose tools
+Pull from https://github.com/rurr1213/agoraMultiSites/blob/master/README.TXT
+Run docker compose up -d
 
-1) Add A record to DNS Server
-2) Create a new site in wordpress network admin
-3) Add new site alias to agoraMultiSites/apache2_sites/available/000-default-le-ssl.conf.
+Everything is defined in compose.yaml and entrypoint.sh, see these for exact operation.
+
+TO ADD NEW SITE STEPS
+=====================
+
+*) Add A record to DNS Server
+*) Create a new site in wordpress MySites->Network Admin->Sites->Add New Sites
+*) Update site wordpress MySites->Network Admin->Sites select site -> Edit->Site Address Set to <domain.com>
+3) Add new site domain alias to agoraMultiSites/apache2_sites/available/000-default-le-ssl.conf.
 4) Update Certbot certificate to certify existing sites + newsite
 5) Restart all, by doing a compose down and compose up -all
 6) Go to <new site.com>/wp-admin/ user ravi:Bfrx100#
@@ -28,8 +38,12 @@ docker image list
 docker container list
 docker ps
 docker ps -a
+docker compose logs wordpress
+docker compose logs db
+
 docker compose help
 docker help
+
 
 To get into wordpress shell
 
@@ -96,6 +110,7 @@ Then under sites, select site->Edit and change home name to domain name. <domain
 
 Certbot website certification in wordpress container
 ----------------------------------------------------
+For reference see https://letsencrypt.org/ and https://certbot.eff.org/instructions?ws=apache&os=pip
 
 entrypoint.sh already installed certbot pre requisistes. So just ran
 
@@ -130,4 +145,15 @@ Found the following certs:
     Certificate Path: /etc/letsencrypt/live/primary.hyperkube.net/fullchain.pem
     Private Key Path: /etc/letsencrypt/live/primary.hyperkube.net/privkey.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Certificate renewal
+-------------------
+
+See section in entrypoints.sh for how it was setup and how to check last renew status.
+Do following to see last renew status:
+cat /var/log/letsencrypt/letsencrypt.log
+
+crontab setup for automatic renewal.
+crontab -l
+
 
