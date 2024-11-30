@@ -8,5 +8,3 @@ __pycache__/
 node_modules/
 *.log
 
-wordpress_files
-mysql_data
